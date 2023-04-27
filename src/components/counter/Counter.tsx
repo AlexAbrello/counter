@@ -23,16 +23,18 @@ export const Counter: FC<CounterType> = ({
   const startValueError: boolean = (startValue > maxValue || startValue < 0)
   const maxValueError: boolean = (maxValue <= 0 || maxValue <= startValue)
 
+  const content = disabled && !(startValueError || maxValueError)
+      ? <div>enter value and press 'set'</div>
+      : (startValueError || maxValueError)
+          ? <span className={style.textError}>enter correct value and press 'set'</span>
+          : <div className={`${(count > maxValue - 1) && style.endNumberColor} ${style.number}`}>
+            {count}
+          </div>
+
   return (
       <div>
         <div className={style.background}>
-          {disabled && !(startValueError || maxValueError)
-              ? <div>enter value and press 'set'</div>
-              : (startValueError || maxValueError)
-                  ? <span className={style.textError}>enter correct value and press 'set'</span>
-                  : <div className={`${(count > maxValue - 1) && style.endNumberColor} ${style.number}`}>
-                    {count}
-                  </div>}
+          {content}
         </div>
         <div className={style.buttonsArea}>
           <Button name={'inc'}
