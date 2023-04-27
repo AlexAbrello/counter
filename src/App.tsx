@@ -11,13 +11,16 @@ function App() {
   const [maxValue, setMaxValue] = useState<number>(1)
 
   const [count, setCount] = useState<number>(0)
+  const [disabled, setDisabled] = useState(true)
 
 
   const setOnStartValueChange = (value: number) => {
     setStartValue(value)
+    setDisabled(true)
   }
   const setOnMaxValueChange = (value: number) => {
     setMaxValue(value)
+    setDisabled(true)
   }
   const incrementCount = () => {
     setCount(prev => prev + 1)
@@ -27,6 +30,7 @@ function App() {
   }
   const setStartCount = () => {
     setCount(startValue)
+    setDisabled(false)
   }
 
   return (
@@ -45,6 +49,7 @@ function App() {
                    maxValue={maxValue}
                    incrementCount={incrementCount}
                    resetCount={resetCount}
+                   disabled={disabled}
           />
         </div>
       </div>

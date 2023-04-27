@@ -1,5 +1,6 @@
 import React, {ChangeEvent, FC, useState} from 'react';
 import {Button} from "../button/Button";
+import style from './Settings.module.css'
 
 type SettingsType = {
   startValue: number
@@ -28,24 +29,28 @@ export const Settings: FC<SettingsType> = ({
 
   return (
       <div>
-        <div>
+        <div className={style.background}>
           <div>
             <span>Start value: </span><input value={startValue}
                                              type="number"
                                              onChange={onChangeHandlerStart}
-                                             className={}
+                                             className={startValueError ? style.error : ''}
           />
-            {startValueError && <div>error</div>}
           </div>
           <div>
-            <span>Max Value: </span><input value={maxValue} type="number" onChange={onChangeHandlerMax}/>
-            {maxValueError && <div>error</div>}
+            <span>Max Value: </span><input value={maxValue}
+                                           type="number"
+                                           onChange={onChangeHandlerMax}
+                                           className={maxValueError ? style.error : ''}
+          />
           </div>
         </div>
-        <Button callBack={callBackSetCount}
-                name={'set'}
-                disabled={maxValueError || startValueError}
-        />
+        <div className={style.button}>
+          <Button callBack={callBackSetCount}
+                  name={'set'}
+                  disabled={maxValueError || startValueError}
+          />
+        </div>
       </div>
   );
 };

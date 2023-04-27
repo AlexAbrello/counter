@@ -11,6 +11,11 @@
 .number {
     font-size: 100px;
 }
+.textError {
+    color: red;
+    text-align: center;
+    align-items: center;
+}
 .buttonsArea {
     margin: 0 auto;
     display: flex;
