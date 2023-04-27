@@ -7,11 +7,10 @@ import {Settings} from "./components/settings/Settings";
 function App() {
 
   const [startValue, setStartValue] = useState<number>(0)
-
   const [maxValue, setMaxValue] = useState<number>(1)
 
   const [count, setCount] = useState<number>(0)
-  const [disabled, setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState<boolean>(true)
 
 
   const setOnStartValueChange = (value: number) => {

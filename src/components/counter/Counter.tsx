@@ -1,9 +1,9 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {Button} from "../button/Button";
 import style from './Counter.module.css'
 
 type CounterType = {
-  count: number | string
+  count: number
   startValue: number
   maxValue: number
   disabled: boolean
