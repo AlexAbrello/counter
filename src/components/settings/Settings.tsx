@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Button} from "../button/Button";
 import style from './Settings.module.css'
-import ValueInput from "../input/ValueInput";
+import {ValueInput} from "../input/ValueInput";
 
 type SettingsType = {
   startValue: number

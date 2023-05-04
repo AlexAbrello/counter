@@ -7,7 +7,7 @@ type ValueInputType = {
   error: boolean
 }
 
-const ValueInput: FC<ValueInputType> = ({
+export const ValueInput: FC<ValueInputType> = ({
                                           value,
                                           changeCallBack,
                                           error
@@ -28,4 +28,3 @@ const ValueInput: FC<ValueInputType> = ({
   );
 };
 
-export default ValueInput;
