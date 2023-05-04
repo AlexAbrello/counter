@@ -1,6 +1,7 @@
-import React, {ChangeEvent, FC} from 'react';
+import React, {FC} from 'react';
 import {Button} from "../button/Button";
 import style from './Settings.module.css'
+import ValueInput from "../input/ValueInput";
 
 type SettingsType = {
   startValue: number
@@ -18,12 +19,6 @@ export const Settings: FC<SettingsType> = ({
                                              callBackSetCount
                                            }) => {
 
-  const onChangeHandlerMax = (e: ChangeEvent<HTMLInputElement>) => {
-    callBackMax(+e.currentTarget.value)
-  }
-  const onChangeHandlerStart = (e: ChangeEvent<HTMLInputElement>) => {
-    callBackStart(+e.currentTarget.value)
-  }
   const startValueError: boolean = (startValue > maxValue || startValue < 0)
   const maxValueError: boolean = (maxValue <= 0 || maxValue <= startValue)
 
@@ -31,18 +26,20 @@ export const Settings: FC<SettingsType> = ({
       <div>
         <div className={style.background}>
           <div>
-            <span>Start value: </span><input value={startValue}
-                                             type="number"
-                                             onChange={onChangeHandlerStart}
-                                             className={startValueError ? style.error : ''}
-          />
+            <span>Start value: </span>
+            <ValueInput
+                value={startValue}
+                changeCallBack={callBackStart}
+                error={startValueError}
+            />
           </div>
           <div>
-            <span>Max Value: </span><input value={maxValue}
-                                           type="number"
-                                           onChange={onChangeHandlerMax}
-                                           className={maxValueError ? style.error : ''}
-          />
+            <span>Max Value: </span>
+            <ValueInput
+                value={maxValue}
+                changeCallBack={callBackMax}
+                error={maxValueError}
+            />
           </div>
         </div>
         <div className={style.button}>
