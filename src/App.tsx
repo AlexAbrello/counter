@@ -8,7 +8,7 @@ function App() {
 
   return (
       <div className={"App"}>
-        {/*<SeparateCounter/>*/}
+        <SeparateCounter/>
         <CombainedCounter/>
       </div>
   );

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {CombainedCounterComponent} from "./CombainedCounterComponent";
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {CombainedSettingsComponent} from "./CombainedSettingsComponent";
 
 export const CombainedCounter = () => {
@@ -12,8 +12,8 @@ export const CombainedCounter = () => {
   const [disabled, setDisabled] = useState<boolean>(true)
 
   useEffect(() => {
-    let startValue = localStorage.getItem('startValue')
-    let maxValue = localStorage.getItem('maxValue')
+    let startValue = localStorage.getItem('startValueCombained')
+    let maxValue = localStorage.getItem('maxValueCombained')
     if (startValue) {
       let currentStartValue = JSON.parse(startValue)
       setStartValue(currentStartValue)
@@ -25,11 +25,11 @@ export const CombainedCounter = () => {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('startValue', JSON.stringify(startValue))
+    localStorage.setItem('startValueCombained', JSON.stringify(startValue))
   }, [startValue])
 
   useEffect(() => {
-    localStorage.setItem('maxValue', JSON.stringify(maxValue))
+    localStorage.setItem('maxValueCombained', JSON.stringify(maxValue))
   }, [maxValue])
 
   const setOnStartValueChange = (value: number) => {
@@ -53,7 +53,8 @@ export const CombainedCounter = () => {
   return (
         <div>
           <Routes>
-            <Route path={'/'} element={<CombainedCounterComponent count={count}
+            <Route path={'/'} element={<Navigate to={'/counter'} />}/>
+            <Route path={'/counter'} element={<CombainedCounterComponent count={count}
                                                                   startValue={startValue}
                                                                   maxValue={maxValue}
                                                                   incrementCount={incrementCount}

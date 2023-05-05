@@ -44,7 +44,7 @@ export const CombainedSettingsComponent: FC<CombainedSettingsComponentType> = ({
           </div>
         </div>
         <div className={style.button}>
-          <NavLink to={'/'}>
+          <NavLink to={'/counter'}>
             <Button callBack={callBackSetCount}
                     name={'set'}
                     disabled={maxValueError || startValueError}
