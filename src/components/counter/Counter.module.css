@@ -26,3 +26,19 @@
     border: 1px solid white;
     border-radius: 10px;
 }
+.settings {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 13px;
+    outline: none;
+    border: 1px solid white;
+    border-radius: 3px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    background-color: #eee;
+    cursor: pointer;
+    color: black;
+}
