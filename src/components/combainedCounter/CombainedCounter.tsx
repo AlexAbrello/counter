@@ -50,6 +50,9 @@ export const CombainedCounter = () => {
     setCount(startValue)
     setDisabled(false)
   }
+
+  console.log('Combained Counter')
+
   return (
         <div>
           <Routes>
