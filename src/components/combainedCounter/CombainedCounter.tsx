@@ -51,8 +51,6 @@ export const CombainedCounter = () => {
     setDisabled(false)
   }
 
-  console.log('Combained Counter')
-
   return (
         <div>
           <Routes>

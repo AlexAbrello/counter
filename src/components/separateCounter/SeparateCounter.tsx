@@ -50,7 +50,6 @@ export const SeparateCounter = () => {
     setCount(startValue)
     setDisabled(false)
   }
-  console.log('Separate Counter')
 
   return (
       <div className={'App'}>
