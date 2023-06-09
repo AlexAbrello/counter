@@ -1,4 +1,11 @@
-import {CounterType, countReducer, incrementCountAC, resetCountAC, setOnStartValueAC} from "./countReducer";
+import {
+  CounterType,
+  countReducer,
+  incrementCountAC,
+  resetCountAC,
+  setOnMaxValueAC,
+  setOnStartValueAC
+} from "./countReducer";
 
 let startState: CounterType
 
@@ -33,4 +40,12 @@ test('startValue should be changed', () => {
   const endState = countReducer(startState, action)
 
   expect(endState.startValue).toBe(4)
+})
+
+test('maxtValue should be changed', () => {
+
+  const action = setOnMaxValueAC(6)
+  const endState = countReducer(startState, action)
+
+  expect(endState.maxValue).toBe(6)
 })
