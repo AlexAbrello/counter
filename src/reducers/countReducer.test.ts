@@ -1,4 +1,4 @@
-import {CounterType, countReducer, incrementCountAC} from "./countReducer";
+import {CounterType, countReducer, incrementCountAC, resetCountAC} from "./countReducer";
 
 let startState: CounterType
 
@@ -17,4 +17,12 @@ test('count should be incremented', () => {
   const endState = countReducer(startState, action)
 
   expect(endState.count).toBe(1)
+})
+
+test('count should be 0', () => {
+
+  const action = resetCountAC()
+  const endState = countReducer(startState, action)
+
+  expect(endState.count).toBe(0)
 })

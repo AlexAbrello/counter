@@ -1,4 +1,3 @@
-
 export type CounterType = {
   startValue: number
   maxValue: number
@@ -21,16 +20,21 @@ export const countReducer = (state: CounterType = initialState, action: RootCoun
         count: state.count + 1
       }
     }
+    case "RESET-COUNT" : {
+      return {
+        ...state,
+        count: 0
+      }
+    }
     default:
       return state
   }
 }
 
-type RootCountReducerType = IncrementCountType
+type RootCountReducerType = IncrementCountType | ResetCountType
 
 type IncrementCountType = ReturnType<typeof incrementCountAC>
-export const incrementCountAC = () => {
-  return {
-    type: 'INCREMENT-COUNT'
-  }
-}
+type ResetCountType = ReturnType<typeof resetCountAC>
+
+export const incrementCountAC = () => ({type: 'INCREMENT-COUNT'})
+export const resetCountAC = () => ({type: 'RESET-COUNT'})
