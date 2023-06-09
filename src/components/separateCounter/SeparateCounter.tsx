@@ -10,26 +10,26 @@ export const SeparateCounter = () => {
   const [count, setCount] = useState<number>(0)
   const [disabled, setDisabled] = useState<boolean>(true)
 
-  useEffect(() => {
-    let startValue = localStorage.getItem('startValue')
-    let maxValue = localStorage.getItem('maxValue')
-    if (startValue) {
-      let currentStartValue = JSON.parse(startValue)
-      setStartValue(currentStartValue)
-    }
-    if (maxValue) {
-      let currentMaxValue = JSON.parse(maxValue)
-      setMaxValue(currentMaxValue)
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('startValue', JSON.stringify(startValue))
-  }, [startValue])
-
-  useEffect(() => {
-    localStorage.setItem('maxValue', JSON.stringify(maxValue))
-  }, [maxValue])
+  // useEffect(() => {
+  //   let startValue = localStorage.getItem('startValue')
+  //   let maxValue = localStorage.getItem('maxValue')
+  //   if (startValue) {
+  //     let currentStartValue = JSON.parse(startValue)
+  //     setStartValue(currentStartValue)
+  //   }
+  //   if (maxValue) {
+  //     let currentMaxValue = JSON.parse(maxValue)
+  //     setMaxValue(currentMaxValue)
+  //   }
+  // }, [])
+  //
+  // useEffect(() => {
+  //   localStorage.setItem('startValue', JSON.stringify(startValue))
+  // }, [startValue])
+  //
+  // useEffect(() => {
+  //   localStorage.setItem('maxValue', JSON.stringify(maxValue))
+  // }, [maxValue])
 
 
   const setOnStartValueChange = (value: number) => {
