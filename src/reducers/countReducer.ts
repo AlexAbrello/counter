@@ -38,17 +38,25 @@ export const countReducer = (state: CounterType = initialState, action: RootCoun
         maxValue: action.payload.value
       }
     }
+    case "SET-START-COUNT": {
+      return {
+        ...state,
+        count: state.startValue,
+        disabled: false
+      }
+    }
     default:
       return state
   }
 }
 
-type RootCountReducerType = IncrementCountType | ResetCountType | SetOnStartValueType | SetOnMaxValueType
+type RootCountReducerType = IncrementCountType | ResetCountType | SetOnStartValueType | SetOnMaxValueType | SetStartCountType
 
 type IncrementCountType = ReturnType<typeof incrementCountAC>
 type ResetCountType = ReturnType<typeof resetCountAC>
 type SetOnStartValueType = ReturnType<typeof setOnStartValueAC>
 type SetOnMaxValueType = ReturnType<typeof setOnMaxValueAC>
+type SetStartCountType = ReturnType<typeof setStartCountAC>
 
 export const incrementCountAC = () => ({type: 'INCREMENT-COUNT'}) as const
 export const resetCountAC = () => ({type: 'RESET-COUNT'}) as const
@@ -68,3 +76,4 @@ export const setOnMaxValueAC  = (value: number) => {
     }
   } as const
 }
+export const setStartCountAC  = () => ({type: 'SET-START-COUNT'}) as const

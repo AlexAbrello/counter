@@ -4,15 +4,15 @@ import {
   incrementCountAC,
   resetCountAC,
   setOnMaxValueAC,
-  setOnStartValueAC
+  setOnStartValueAC, setStartCountAC
 } from "./countReducer";
 
 let startState: CounterType
 
 beforeEach(() => {
   startState = {
-    startValue: 0,
-    maxValue: 1,
+    startValue: 1,
+    maxValue: 2,
     count: 0,
     disabled: true
   }
@@ -48,4 +48,13 @@ test('maxtValue should be changed', () => {
   const endState = countReducer(startState, action)
 
   expect(endState.maxValue).toBe(6)
+})
+
+test('set startValue', () => {
+
+  const action = setStartCountAC()
+  const endState = countReducer(startState, action)
+
+  expect(endState.count).toBe(1)
+  expect(endState.disabled).toBe(false)
 })
