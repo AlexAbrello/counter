@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Button} from "../button/Button";
 import style from './Settings.module.css'
 import {ValueInput} from "../input/ValueInput";
@@ -11,7 +11,7 @@ type SettingsType = {
   callBackSetCount: () => void
 }
 
-export const Settings: FC<SettingsType> = ({
+export const Settings: FC<SettingsType> = memo(({
                                              startValue,
                                              maxValue,
                                              callBackMax,
@@ -50,5 +50,5 @@ export const Settings: FC<SettingsType> = ({
         </div>
       </div>
   );
-};
+});
 

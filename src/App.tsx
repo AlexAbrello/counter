@@ -5,7 +5,6 @@ import {CombainedCounter} from "./components/combainedCounter/CombainedCounter";
 
 
 function App() {
-
   return (
       <div className={"App"}>
         <SeparateCounter/>

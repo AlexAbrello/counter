@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Button} from "../button/Button";
 import style from './Counter.module.css'
 
@@ -11,7 +11,7 @@ type CounterType = {
   resetCount: () => void
 }
 
-export const Counter: FC<CounterType> = ({
+export const Counter: FC<CounterType> = memo(({
                                            count,
                                            maxValue,
                                            startValue,
@@ -48,5 +48,5 @@ export const Counter: FC<CounterType> = ({
         </div>
       </div>
   );
-};
+});
 

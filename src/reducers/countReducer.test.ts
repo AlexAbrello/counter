@@ -31,7 +31,7 @@ test('count should be 0', () => {
   const action = resetCountAC()
   const endState = countReducer(startState, action)
 
-  expect(endState.count).toBe(0)
+  expect(endState.count).toBe(1)
 })
 
 test('startValue should be changed', () => {

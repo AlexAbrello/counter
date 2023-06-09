@@ -1,4 +1,4 @@
-import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react';
+import React, {ButtonHTMLAttributes, DetailedHTMLProps, memo} from 'react';
 import style from './Button.module.css'
 
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>,
@@ -9,7 +9,7 @@ type ButtonType = DefaultButtonPropsType & {
   callBack: () => void
 }
 
-export const Button: React.FC<ButtonType> = ({name, callBack, disabled}) => {
+export const Button: React.FC<ButtonType> = memo(({name, callBack, disabled}) => {
 
   const onClickHandler = () => {
     callBack()
@@ -23,5 +23,5 @@ export const Button: React.FC<ButtonType> = ({name, callBack, disabled}) => {
             onClick={onClickHandler}>{name}</button>
       </div>
   );
-};
+});
 

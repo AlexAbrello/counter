@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from 'react';
+import React, {ChangeEvent, FC, memo} from 'react';
 import style from "../settings/Settings.module.css";
 
 type ValueInputType = {
@@ -7,7 +7,7 @@ type ValueInputType = {
   error: boolean
 }
 
-export const ValueInput: FC<ValueInputType> = ({
+export const ValueInput: FC<ValueInputType> = memo(({
                                           value,
                                           changeCallBack,
                                           error
@@ -26,5 +26,5 @@ export const ValueInput: FC<ValueInputType> = ({
         />
       </>
   );
-};
+});
 

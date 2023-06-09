@@ -23,7 +23,7 @@ export const countReducer = (state: CounterType = initialState, action: RootCoun
     case "RESET-COUNT" : {
       return {
         ...state,
-        count: 0
+        count: state.startValue
       }
     }
     case "SET-ON-START-VALUE": {

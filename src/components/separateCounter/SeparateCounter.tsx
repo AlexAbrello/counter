@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useCallback, useEffect} from 'react';
 import {Settings} from "../settings/Settings";
 import {Counter} from "../counter/Counter";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,14 +11,7 @@ import {
   setOnStartValueAC, setStartCountAC
 } from "../../reducers/countReducer";
 
-export const SeparateCounter = () => {
-
-  // const [startValue, setStartValue] = useState<number>(0)
-  // const [maxValue, setMaxValue] = useState<number>(1)
-  //
-  // const [count, setCount] = useState<number>(0)
-  // const [disabled, setDisabled] = useState<boolean>(true)
-
+export const SeparateCounter = memo(() => {
   // useEffect(() => {
   //   let startValue = localStorage.getItem('startValue')
   //   let maxValue = localStorage.getItem('maxValue')
@@ -48,29 +41,21 @@ export const SeparateCounter = () => {
   const count = state.count
   const disabled = state.disabled
 
-  const setOnStartValueChange = (value: number) => {
-    // setStartValue(value)
-    // setDisabled(true)
+  const setOnStartValueChange = useCallback((value: number) => {
     dispatch(setOnStartValueAC(value))
-  }
-  const setOnMaxValueChange = (value: number) => {
-    // setMaxValue(value)
-    // setDisabled(true)
+  }, [dispatch])
+  const setOnMaxValueChange = useCallback((value: number) => {
     dispatch(setOnMaxValueAC(value))
-  }
-  const incrementCount = () => {
-    // setCount(prev => prev + 1)
+  }, [dispatch])
+  const incrementCount = useCallback(() => {
     dispatch(incrementCountAC())
-  }
-  const resetCount = () => {
-    // setCount(startValue)
+  }, [dispatch])
+  const resetCount = useCallback(() => {
     dispatch(resetCountAC())
-  }
-  const setStartCount = () => {
-    // setCount(startValue)
-    // setDisabled(false)
+  }, [dispatch])
+  const setStartCount = useCallback(() => {
     dispatch(setStartCountAC())
-  }
+  }, [dispatch])
 
   return (
       <div className={'App'}>
@@ -93,5 +78,5 @@ export const SeparateCounter = () => {
         </div>
       </div>
   );
-};
+});
 
