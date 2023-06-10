@@ -23,17 +23,6 @@ export const Counter = memo(() => {
     dispatch(incrementCountAC())
   }, [dispatch])
 
-  // const startValueError: boolean = (startValue > maxValue || startValue < 0)
-  // const maxValueError: boolean = (maxValue <= 0 || maxValue <= startValue)
-
-  // const content = disabled && !(startValueError || maxValueError)
-  //     ? <div>enter value and press 'set'</div>
-  //     : (startValueError || maxValueError)
-  //         ? <span className={style.textError}>enter correct value and press 'set'</span>
-  //         : <div className={`${(startCount > maxValue - 1) && style.endNumberColor} ${style.number}`}>
-  //           {startCount}
-  //         </div>
-
   const content = disabled
       ? <div>enter value and press 'set'</div>
       : <div className={`${(startCount > maxCount - 1) && style.endNumberColor} ${style.number}`}>

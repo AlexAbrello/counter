@@ -25,14 +25,6 @@ export const SeparateCounter = memo(() => {
   //   localStorage.setItem('maxValue', JSON.stringify(maxValue))
   // }, [maxValue])
 
-  // const state = useSelector<AppRootStateType, CounterType>(state => state.counter)
-  // const dispatch = useDispatch()
-  //
-  // const startValue = state.startValue
-  // const maxValue = state.maxValue
-  // const count = state.count
-  // const disabled = state.disabled
-
   return (
       <div className={'App'}>
         <div className={'container'}>
