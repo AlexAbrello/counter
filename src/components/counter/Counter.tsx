@@ -36,9 +36,9 @@ export const Counter = memo(() => {
 
   const content = disabled
       ? <div>enter value and press 'set'</div>
-          : <div className={`${(startCount > maxCount - 1) && style.endNumberColor} ${style.number}`}>
-            {startCount}
-          </div>
+      : <div className={`${(startCount > maxCount - 1) && style.endNumberColor} ${style.number}`}>
+        {startCount}
+      </div>
 
   return (
       <div>

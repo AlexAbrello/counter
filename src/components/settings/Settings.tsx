@@ -48,6 +48,7 @@ export const Settings = memo(() => {
                 error={maxValueError}
             />
           </div>
+          {(startValueError || maxValueError) && <div className={style.textError}>enter correct value and press 'set'</div>}
         </div>
         <div className={style.button}>
           <Button callBack={setStartCount}
