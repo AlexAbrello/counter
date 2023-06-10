@@ -27,15 +27,11 @@ export const settingsReducer = (state: SettingsType = initialState, action: Root
   }
 }
 
-type RootCountReducerType = IncrementCountType | ResetCountType | SetOnStartValueType | SetOnMaxValueType
+type RootCountReducerType = SetOnStartValueType | SetOnMaxValueType
 
-type IncrementCountType = ReturnType<typeof incrementCountAC>
-type ResetCountType = ReturnType<typeof resetCountAC>
 type SetOnStartValueType = ReturnType<typeof setOnStartValueAC>
 type SetOnMaxValueType = ReturnType<typeof setOnMaxValueAC>
 
-export const incrementCountAC = () => ({type: 'INCREMENT-COUNT'}) as const
-export const resetCountAC = () => ({type: 'RESET-COUNT'}) as const
 export const setOnStartValueAC  = (value: number) => {
   return {
     type: 'SET-ON-START-VALUE',
