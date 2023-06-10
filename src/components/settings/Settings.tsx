@@ -1,23 +1,30 @@
-import React, {FC, memo} from 'react';
+import React, {FC, memo, useCallback} from 'react';
 import {Button} from "../button/Button";
 import style from './Settings.module.css'
 import {ValueInput} from "../input/ValueInput";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../state/store";
+import {setOnMaxValueAC, setOnStartValueAC, SettingsType} from "../../reducers/settingsReducer";
+import {setStartCountAC} from "../../reducers/countReducer";
 
-type SettingsType = {
-  startValue: number
-  maxValue: number
-  callBackMax: (value: number) => void
-  callBackStart: (value: number) => void
-  callBackSetCount: () => void
-}
 
-export const Settings: FC<SettingsType> = memo(({
-                                             startValue,
-                                             maxValue,
-                                             callBackMax,
-                                             callBackStart,
-                                             callBackSetCount
-                                           }) => {
+export const Settings = memo(() => {
+
+  const state = useSelector<AppRootStateType, SettingsType>(state => state.stateForSettings)
+  const dispatch = useDispatch()
+
+  const startValue = state.startValue
+  const maxValue = state.maxValue
+
+  const setOnStartValueChange = useCallback((value: number) => {
+    dispatch(setOnStartValueAC(value))
+  }, [dispatch])
+  const setOnMaxValueChange = useCallback((value: number) => {
+    dispatch(setOnMaxValueAC(value))
+  }, [dispatch])
+  const setStartCount = useCallback(() => {
+    dispatch(setStartCountAC(startValue, maxValue))
+  }, [dispatch, startValue, maxValue])
 
   const startValueError: boolean = (startValue > maxValue || startValue < 0)
   const maxValueError: boolean = (maxValue <= 0 || maxValue <= startValue)
@@ -29,7 +36,7 @@ export const Settings: FC<SettingsType> = memo(({
             <span>Start value: </span>
             <ValueInput
                 value={startValue}
-                changeCallBack={callBackStart}
+                changeCallBack={setOnStartValueChange}
                 error={startValueError}
             />
           </div>
@@ -37,13 +44,13 @@ export const Settings: FC<SettingsType> = memo(({
             <span>Max Value: </span>
             <ValueInput
                 value={maxValue}
-                changeCallBack={callBackMax}
+                changeCallBack={setOnMaxValueChange}
                 error={maxValueError}
             />
           </div>
         </div>
         <div className={style.button}>
-          <Button callBack={callBackSetCount}
+          <Button callBack={setStartCount}
                   name={'set'}
                   disabled={maxValueError || startValueError}
           />

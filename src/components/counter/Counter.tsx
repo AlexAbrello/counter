@@ -1,34 +1,43 @@
-import React, {FC, memo} from 'react';
+import React, {FC, memo, useCallback} from 'react';
 import {Button} from "../button/Button";
 import style from './Counter.module.css'
+import {CounterType, incrementCountAC, resetCountAC} from "../../reducers/countReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../state/store";
 
-type CounterType = {
-  count: number
-  startValue: number
-  maxValue: number
-  disabled: boolean
-  incrementCount: () => void
-  resetCount: () => void
-}
+export const Counter = memo(() => {
 
-export const Counter: FC<CounterType> = memo(({
-                                           count,
-                                           maxValue,
-                                           startValue,
-                                           disabled,
-                                           resetCount,
-                                           incrementCount
-                                         }) => {
+  const state = useSelector<AppRootStateType, CounterType>(state => state.stateForCounter)
+  const dispatch = useDispatch()
 
-  const startValueError: boolean = (startValue > maxValue || startValue < 0)
-  const maxValueError: boolean = (maxValue <= 0 || maxValue <= startValue)
+  const startCount = state.startCount
+  const maxCount = state.maxCount
+  const setCount = state.setCount
+  const disabled = state.disabled
 
-  const content = disabled && !(startValueError || maxValueError)
+  const resetCount = useCallback(() => {
+    dispatch(resetCountAC())
+  }, [dispatch])
+
+  const incrementCount = useCallback(() => {
+    dispatch(incrementCountAC())
+  }, [dispatch])
+
+  // const startValueError: boolean = (startValue > maxValue || startValue < 0)
+  // const maxValueError: boolean = (maxValue <= 0 || maxValue <= startValue)
+
+  // const content = disabled && !(startValueError || maxValueError)
+  //     ? <div>enter value and press 'set'</div>
+  //     : (startValueError || maxValueError)
+  //         ? <span className={style.textError}>enter correct value and press 'set'</span>
+  //         : <div className={`${(startCount > maxValue - 1) && style.endNumberColor} ${style.number}`}>
+  //           {startCount}
+  //         </div>
+
+  const content = disabled
       ? <div>enter value and press 'set'</div>
-      : (startValueError || maxValueError)
-          ? <span className={style.textError}>enter correct value and press 'set'</span>
-          : <div className={`${(count > maxValue - 1) && style.endNumberColor} ${style.number}`}>
-            {count}
+          : <div className={`${(startCount > maxCount - 1) && style.endNumberColor} ${style.number}`}>
+            {startCount}
           </div>
 
   return (
@@ -39,11 +48,11 @@ export const Counter: FC<CounterType> = memo(({
         <div className={style.buttonsArea}>
           <Button name={'inc'}
                   callBack={incrementCount}
-                  disabled={(count > maxValue - 1) || (startValueError || maxValueError) || disabled}
+                  disabled={(startCount > maxCount - 1) || disabled}
           />
           <Button name={'reset'}
                   callBack={resetCount}
-                  disabled={(count === startValue) || (startValueError || maxValueError) || disabled}
+                  disabled={(startCount === setCount) || disabled}
           />
         </div>
       </div>
