@@ -9,8 +9,14 @@ const rootReducer = combineReducers({
   stateForSettings: settingsReducer
 })
 
-export const store = createStore(rootReducer)
+let preloadedState
+const persistedCount = localStorage.getItem('counter')
+if (persistedCount) {
+  preloadedState = JSON.parse(persistedCount)
+}
+
+export const store = createStore(rootReducer, {stateForSettings: preloadedState})
 
 store.subscribe(() => {
-  localStorage.setItem('counter', JSON.stringify(store.getState()))
+  localStorage.setItem('counter', JSON.stringify(store.getState().stateForSettings))
 })
