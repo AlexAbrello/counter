@@ -10,3 +10,7 @@ const rootReducer = combineReducers({
 })
 
 export const store = createStore(rootReducer)
+
+store.subscribe(() => {
+  localStorage.setItem('counter', JSON.stringify(store.getState()))
+})
